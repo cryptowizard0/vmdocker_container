@@ -1,6 +1,6 @@
-# HyMatrix Container
+# vmdocker Container
 
-HyMatrix Container is a Docker-based runtime environment for executing and managing AO smart contracts.
+vmdocker Container is a Docker-based runtime environment for executing and managing AO smart contracts.
 
 ## Features
 
