@@ -6,9 +6,7 @@ ENV GOPRIVATE=github.com/hymatrix/hymx/
 ENV GO111MODULE=on
 ENV GODEBUG=multipathtcp=0
 
-# Set GitHub token
-ARG GITHUB_TOKEN
-RUN git config --global url."https://${GITHUB_TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
+
 
 # Create working directory
 WORKDIR /build

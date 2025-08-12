@@ -30,32 +30,30 @@ More about HyMatrix & Vmdocker:
 ### Prerequisites
 
 - Docker installed and running
-- GitHub token for private repository access
 - Go 1.19+ (for local development)
 
 ### Build Docker Image
 
 ```bash
 # Build GoLua runtime image
-./docker_build.sh golua <GITHUB_TOKEN> <VERSION>
+./docker_build.sh golua <VERSION>
 
 # Build Ollama runtime image
-./docker_build.sh ollama <GITHUB_TOKEN> <VERSION>
+./docker_build.sh ollama <VERSION>
 ```
 
 **Parameters:**
 - `golua|ollama`: Runtime type to build
-- `<GITHUB_TOKEN>`: Your GitHub personal access token for private repository access
 - `<VERSION>`: Image version tag (e.g., v1.0.0, latest, dev)
 
 **Examples:**
 ```bash
 # Build with specific version
-./docker_build.sh golua your_github_token v1.0.0
-./docker_build.sh ollama your_github_token v2.1.0
+./docker_build.sh golua v1.0.0
+./docker_build.sh ollama v2.1.0
 
 # Build with latest tag
-./docker_build.sh golua your_github_token latest
+./docker_build.sh golua latest
 ```
 
 ### Run Container
