@@ -7,7 +7,7 @@ require (
 	github.com/cryptowizard0/vmdocker v0.0.0-20250721033100-87c9447d8a41
 	github.com/getsentry/sentry-go v0.32.0
 	github.com/gin-gonic/gin v1.10.0
-	github.com/hymatrix/hymx v0.0.6
+	github.com/hymatrix/hymx v0.1.2
 	github.com/inconshreveable/log15 v2.16.0+incompatible
 	github.com/ollama/ollama v0.6.8
 	github.com/permadao/goar v1.1.1
@@ -44,4 +44,3 @@ require (
 	google.golang.org/protobuf v1.36.6 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
-
