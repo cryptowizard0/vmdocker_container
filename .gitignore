@@ -33,3 +33,4 @@ debug/
 # OS generated files
 .DS_Store
 Thumbs.db
+go.sum
