@@ -24,6 +24,7 @@ More about HyMatrix & Vmdocker:
 |---------|---------|
 | [AOS](https://github.com/cryptowizard0/aos) | AOS v2.0.1 env|
 | Ollama  | Large Language Model serving runtime |
+| Test    | Lightweight in-memory runtime for message-path verification (`RUNTIME_TYPE=test`) |
 
 ## 🐳 Quick Start with Docker
 

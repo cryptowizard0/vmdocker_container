@@ -8,6 +8,7 @@ import (
 
 	"github.com/cryptowizard0/vmdocker_container/common"
 	ollama "github.com/cryptowizard0/vmdocker_container/runtime/runtime_ollama"
+	testrt "github.com/cryptowizard0/vmdocker_container/runtime/runtime_testrt"
 	golua "github.com/cryptowizard0/vmdocker_container/runtime/runtime_vmgolua"
 	"github.com/cryptowizard0/vmdocker_container/runtime/schema"
 	vmmSchema "github.com/hymatrix/hymx/vmm/schema"
@@ -19,6 +20,7 @@ var log = common.NewLog("runtime")
 const (
 	RuntimeTypeGolua  = "golua"
 	RuntimeTypeOLlama = "ollama"
+	RuntimeTypeTest   = "test"
 )
 
 type Runtime struct {
@@ -41,6 +43,8 @@ func New(env vmmSchema.Env, nodeAddr, aoDir string, tags []goarSchema.Tag) (*Run
 		vm, err = golua.NewVmGolua(env, nodeAddr, aoDir, tags)
 	case RuntimeTypeOLlama:
 		vm, err = ollama.NewRuntimeOllama()
+	case RuntimeTypeTest:
+		vm, err = testrt.NewRuntimeTest()
 	default:
 		return nil, errors.New("runtime type not supported: " + runtimeType)
 	}
