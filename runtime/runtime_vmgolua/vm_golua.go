@@ -63,6 +63,10 @@ func NewVmGolua(env vmmSchema.Env, nodeAddr, aoDir string, tags []goarSchema.Tag
 	}
 
 	var err error
+	processID := env.Meta.Pid
+	if processID == "" {
+		processID = env.Meta.ItemId
+	}
 	aoEnv := schema.AoEnv{
 		Module: schema.AoModule{
 			Owner: env.Meta.AccId,
@@ -71,7 +75,7 @@ func NewVmGolua(env vmmSchema.Env, nodeAddr, aoDir string, tags []goarSchema.Tag
 		},
 		Process: schema.AoProcess{
 			Owner: env.Meta.AccId,
-			Id:    env.Id,
+			Id:    processID,
 			Tags:  env.Process.Tags,
 		},
 	}
@@ -92,6 +96,10 @@ func NewVmGolua(env vmmSchema.Env, nodeAddr, aoDir string, tags []goarSchema.Tag
 }
 
 func (v *VmGolua) Apply(from string, meta vmmSchema.Meta, params map[string]string) (vmmSchema.Result, error) {
+	if params == nil {
+		params = map[string]string{}
+	}
+
 	params["Id"] = meta.ItemId
 	params["Action"] = meta.Action
 	params["From"] = from

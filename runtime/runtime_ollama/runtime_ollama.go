@@ -28,21 +28,28 @@ func NewRuntimeOllama() (*RumtimeOllama, error) {
 	}, nil
 }
 func (r *RumtimeOllama) Apply(from string, meta vmmSchema.Meta, params map[string]string) (vmmSchema.Result, error) {
+	if params == nil {
+		params = map[string]string{}
+	}
+
 	//
 	for k, v := range params {
 		log.Debug("params", "key", k, "value", v)
 		fmt.Println("params ", "key: ", k, ", value: ", v)
 	}
 	action := params["Action"]
+	if action == "" {
+		action = meta.Action
+	}
 	// ! for aos
 	if action == "Eval" {
 		if params["Data"] == "require('.process')._version" {
 			resMsgs := []*vmmSchema.ResMessage{}
 			spawnMsgs := []*vmmSchema.ResSpawn{}
 			return vmmSchema.Result{
-				Messages:     resMsgs,
-				Spawns:       spawnMsgs,
-				Assignmengts: nil,
+				Messages:    resMsgs,
+				Spawns:      spawnMsgs,
+				Assignments: nil,
 				Output: map[string]string{
 					"data":   "2.0.1",
 					"prompt": "\u001b[32m\u001b[90m@\u001b[34maos-2.0.1\u001b[90m[Inbox:\u001b[31m\u001b[90m]\u001b[0m\u003e ",
@@ -93,7 +100,7 @@ func (r *RumtimeOllama) Apply(from string, meta vmmSchema.Meta, params map[strin
 	outbox := vmmSchema.Result{
 		Messages: []*vmmSchema.ResMessage{
 			{
-				Target:   params["From"],
+				Target:   from,
 				Sequence: params["Reference"],
 				Data:     responseText,
 				Tags: []goarSchema.Tag{
@@ -104,10 +111,10 @@ func (r *RumtimeOllama) Apply(from string, meta vmmSchema.Meta, params map[strin
 				},
 			},
 		},
-		Spawns:       []*vmmSchema.ResSpawn{},
-		Assignmengts: nil,
-		Output:       responseText,
-		Data:         responseText,
+		Spawns:      []*vmmSchema.ResSpawn{},
+		Assignments: nil,
+		Output:      responseText,
+		Data:        responseText,
 	}
 
 	return outbox, nil
